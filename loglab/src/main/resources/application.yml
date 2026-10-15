@@ -1,0 +1,18 @@
+server:
+  # HALO usa 8080; o LogLab fica em 8082 para os dois rodarem juntos
+  port: 8082
+
+spring:
+  application:
+    name: loglab
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# URL da API de ingestão do HALO (usada quando o gerador enviar eventos)
+loglab:
+  halo:
+    url: ${HALO_URL:http://localhost:8080}

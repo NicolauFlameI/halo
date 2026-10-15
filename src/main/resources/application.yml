@@ -2,18 +2,24 @@ spring:
   application:
     name: halo
   datasource:
+    # Valores lidos de variáveis de ambiente; se não existirem, usa o padrão após os dois-pontos.
     url: ${HALO_DB_URL:jdbc:postgresql://localhost:5432/halo}
     username: ${HALO_DB_USER:halo}
     password: ${HALO_DB_PASSWORD:halo}
   jpa:
     hibernate:
+      # "validate": o Hibernate só CONFERE se as entidades batem com o banco.
+      # Quem cria/altera tabelas é o Flyway (db/migration), nunca o Hibernate.
       ddl-auto: validate
+    # Evita manter a sessão do banco aberta durante a renderização da resposta web
     open-in-view: false
   flyway:
+    # Executa automaticamente as migrations pendentes ao iniciar a aplicação
     enabled: true
 
 management:
   endpoints:
     web:
       exposure:
+        # Expõe apenas /actuator/health e /actuator/info (o mínimo necessário)
         include: health,info

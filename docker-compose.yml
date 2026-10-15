@@ -1,3 +1,4 @@
+# PostgreSQL local para desenvolvimento do HALO. Subir com: docker compose up -d
 services:
   postgres:
     image: postgres:16
@@ -9,6 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
+      # Volume nomeado: os dados sobrevivem quando o container é recriado
       - halo-pgdata:/var/lib/postgresql/data
 
 volumes:

@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: halo-postgres
+    environment:
+      POSTGRES_DB: halo
+      POSTGRES_USER: halo
+      POSTGRES_PASSWORD: halo
+    ports:
+      - "5432:5432"
+    volumes:
+      - halo-pgdata:/var/lib/postgresql/data
+
+volumes:
+  halo-pgdata:
